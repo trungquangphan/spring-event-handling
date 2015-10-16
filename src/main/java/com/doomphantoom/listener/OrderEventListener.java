@@ -6,6 +6,8 @@ import org.springframework.stereotype.Component;
 
 /**
  * Created by doomphantom on 16/10/2015.
+ * Declaration of @Component will register class ApplicationEventListener with spring application context.
+ * By implementing the interface ApplicationListener with event type OrderEvent, this listener will only handle for matching OrderEvent object.
  */
 @Component
 public class OrderEventListener implements ApplicationListener<OrderEvent> {

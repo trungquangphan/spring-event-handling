@@ -1,14 +1,12 @@
 package com.doomphantoom;
 
-import com.doomphantoom.listener.OrderEventListener;
-import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.event.ApplicationEventMulticaster;
+import org.springframework.context.event.SimpleApplicationEventMulticaster;
+import org.springframework.core.task.SimpleAsyncTaskExecutor;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.thymeleaf.spring4.SpringTemplateEngine;
-import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
-import org.thymeleaf.templateresolver.TemplateResolver;
 
 /**
  * Hello world!
@@ -17,4 +15,11 @@ import org.thymeleaf.templateresolver.TemplateResolver;
 @EnableWebMvc
 @ComponentScan(basePackages = "com.doomphantoom")
 public class App {
+
+    @Bean
+    public ApplicationEventMulticaster applicationEventMulticaster(){
+        SimpleApplicationEventMulticaster simpleApplicationEventMulticaster=new SimpleApplicationEventMulticaster();
+        simpleApplicationEventMulticaster.setTaskExecutor(new SimpleAsyncTaskExecutor());
+        return simpleApplicationEventMulticaster;
+    }
 }

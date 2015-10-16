@@ -7,6 +7,8 @@ import org.springframework.stereotype.Component;
 /**
  * Created by doomphantom on 16/10/2015.
  */
+
+
 @Component
 public class ApplicationEventListener implements ApplicationListener<ApplicationBaseEvent> {
 
