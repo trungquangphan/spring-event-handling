@@ -3,6 +3,7 @@ package com.doomphantoom.controller;
 import com.doomphantoom.dto.Order;
 import com.doomphantoom.dto.Refund;
 import com.doomphantoom.event.OrderEvent;
+import com.doomphantoom.event.OrderSuccessEvent;
 import com.doomphantoom.event.RefundEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Created by doomphantom on 16/10/2015.
- * This demos the event handling mechanism in spring 3.x
+ * This demos the event handling mechanism in spring 3.x + 4.x
  */
 @Controller
 public class EventHandlingController {
@@ -37,6 +38,21 @@ public class EventHandlingController {
         return "{\"status\":\"ok\"}";
     }
 
+    @RequestMapping("/publishOrderSuccessEvent")
+    @ResponseBody
+    public String publishOrderSuccessEvent(@RequestBody Order order) {
+        OrderSuccessEvent orderSuccessEvent = new OrderSuccessEvent(order);
+        applicationEventPublisher.publishEvent(orderSuccessEvent);
+        System.out.println("The orderSuccessEvent is successfully published");
+        return "{\"status\":\"ok\"}";
+    }
+
+    /**
+     * In Spring 4.2, we can publish any object as an event, you don't have to extend ApplicationEvent. This will increase the flexibility of the system.
+     *
+     * @param refund
+     * @return
+     */
     @RequestMapping("/publishRefundEvent")
     @ResponseBody
     public String publishRefundEvent(@RequestBody Refund refund) {

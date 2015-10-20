@@ -17,8 +17,8 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 public class App {
 
     @Bean
-    public ApplicationEventMulticaster applicationEventMulticaster(){
-        SimpleApplicationEventMulticaster simpleApplicationEventMulticaster=new SimpleApplicationEventMulticaster();
+    public ApplicationEventMulticaster applicationEventMulticaster() {
+        SimpleApplicationEventMulticaster simpleApplicationEventMulticaster = new SimpleApplicationEventMulticaster();
         simpleApplicationEventMulticaster.setTaskExecutor(new SimpleAsyncTaskExecutor());
         return simpleApplicationEventMulticaster;
     }
