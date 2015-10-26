@@ -18,18 +18,23 @@ To listen an event, we need to create a listener and register it with spring's a
 In Spring 3.x, a listener closely follows the below pattern:
 
 public class MyApplicationEventListener implement ApplicationListener<MyEventObject>{
+
     public void onApplicationEvent(MyEventObject myEvent) {
         //do something here....
     }
+    
 }
 
 In Spring 4.x, the biggest new feature is the support of annotation-driven event listeners.
+
 @Component
 public class EntireApplicationListener{
+
     @EventListener
     public void handleMyEventObjectListener(MyEventObject myEvent) {
         //do something here....
     }
+    
 }
 
 This also allows to handle multiple event within one class with less-effort.
